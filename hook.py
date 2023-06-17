@@ -5,7 +5,7 @@ from threading import Thread
 
 import requests
 from flask import Flask, request
-# from main import handler
+from handler import handler
 
 app = Flask(__name__)
 
@@ -13,20 +13,8 @@ app = Flask(__name__)
 @app.route("/", methods=["POST"])
 def receive_update():
     if request.method == "POST":
-        # print('sdfbskdbkjfbk')
-    # logging.info(request.get_json())
-    # print('asldknflaskjgdkjbkj')
-        print(request.form)
-    # msg = {
-    #     "id": request.get_json()["message"]["chat"]["id"],
-    #     "from": request.get_json()["message"]["chat"]["first_name"],
-    #     "text": request.get_json()["message"]["text"],
-    # }
-    # print(msg, flush=True)
-    # thread = Thread(target=handler, args=(msg,))
-    # thread.start()
-
-
+        data = request.json
+        handler(data)
     return {"ok": True}
 
 
